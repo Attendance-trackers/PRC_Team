@@ -1,39 +1,24 @@
-<?php
-// SQL Server connection details
-$serverName = "localhost"; // or "SERVER\INSTANCE"
-$connectionOptions = [
-    "Database" => "bhotepramod_",
-    "Uid" => "bhotepramod_",
-    "PWD" => "Airtel@753"
-];
+<!DOCTYPE html>
+<html lang="en">
 
-// Connect to SQL Server
-$conn = sqlsrv_connect($serverName, $connectionOptions);
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack Login & Register Form With User & Admin Page | Codehal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-if ($conn === false) {
-    die(print_r(sqlsrv_errors(), true));
-}
-
-// Get form data
-$username = $_POST['username'];
-$password = $_POST['password'];
-
-// Query to check user (plaintext password for demo; use HASH in real system)
-$sql = "SELECT * FROM Users WHERE UserName = ? AND UserPassword = ?";
-$params = array($username, $password);
-
-$stmt = sqlsrv_query($conn, $sql, $params);
-
-if ($stmt === false) {
-    die(print_r(sqlsrv_errors(), true));
-}
-
-if (sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-    echo "<h2>✅ Login Successful! Welcome, $username</h2>";
-} else {
-    echo "<h2>❌ Invalid username or password</h2>";
-}
-
-// Close connection
-sqlsrv_close($conn);
-?>
+<body>
+    <div class="container">
+        <div class="form-box" id="login-form">
+            <form action="">
+                <h2>Attendance tracker Login</h2>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit" name="login">Login</button>
+                <p>Don't Have an account then contact to Admin</p> 
+            </form>
+        </div>        
+    </div>
+</body>
+</html>
